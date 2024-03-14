@@ -6,13 +6,12 @@ import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
 app.use(routes);
 
-/*middleware*/
-//this cause the middleware has more a parameter error because is a middleware for handle error
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {
@@ -21,13 +20,14 @@ app.use(
         message: error.message,
       });
     }
+
     return response.status(500).json({
       status: 'error',
-      message: 'Internal Server Error',
+      message: 'Internal server error',
     });
   },
 );
 
 app.listen(3333, () => {
-  console.log('Connect on port 3333!');
+  console.log('Server started on port 3333! 🏆');
 });
