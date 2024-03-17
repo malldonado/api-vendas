@@ -1,2 +1,6 @@
-migrations
+**Migrations**
 yarn typeorm migration:run
+
+**Docker**
+1 - docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5433:5433 -d postgres
+2 - docker run postgres
